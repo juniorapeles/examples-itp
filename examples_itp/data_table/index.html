@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data-table</title>
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css">
+    <script src="https://cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Adicione o link para o arquivo de tradução pt-BR.json -->
+</head>
+<body>
+    <header></header>
+    <main>
+        <div class="boxTable">
+            <table id="example" class="table display">
+                <thead>
+                    <tr>
+                        <th id="firstTh"><input type="checkbox" name="" id="myPrincipalCheckBox"></th>
+                        <th>E-mail</th>
+                        <th>Nome de usuário</th>
+                        <th><span id="alinha">Editar</span></th>
+                        <th><span id="alinha">Redefinir Senha</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr>
+                        <th><input type="checkbox" name="" id=""></th>
+                        <th>E-mail</th>
+                        <th>Nome de usuário</th>
+                        <th>Perfil</th>
+                        <th>Editar</th>
+                   </tr>
+                   <tr>
+                    <th><input type="checkbox" name="" id=""></th>
+                        <th>E-mail</th>
+                        <th>Nome de usuário</th>
+                        <th>Perfil</th>
+                        <th>Editar</th>
+                    </tr>
+                    <th><input type="checkbox" name="" id=""></th>
+                        <th>E-mail</th>
+                        <th>Nome de usuário</th>
+                        <th>Perfil</th>
+                        <th>Editar</th>
+                    </tr>
+                    <th><input type="checkbox" name="" id=""></th>
+                        <th>E-mail</th>
+                        <th>Nome de usuário</th>
+                        <th>Perfil</th>
+                        <th>Editar</th>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#example').DataTable({
+            "columnDefs": [
+                { "orderable": false, "targets": 2 } // "targets" é o índice da coluna (começando em 0)
+            ],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json"
+            }
+        });
+    });
+    </script>
+</body>
+</html>
