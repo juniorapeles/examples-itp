@@ -1,0 +1,79 @@
+.modal-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background: #FFF;
+    /* Paineis */
+    box-shadow: 1px 2px 6px 0px rgba(36, 36, 36, 0.32);
+}
+.modal-header{
+    border-radius: 0;
+    padding: 15px 0px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: var(--Main-Azul, #4D92FA);
+}
+
+.modal-body{
+    gap: 24px;
+}
+
+.modal-footer{
+    width: 100%;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 16px;
+
+}
+.modal>p{
+    margin: 0px;
+}
+
+.modal >h4{
+    color: var(--Cinza-Sesso, #E9E9E9);
+    /* H4 | SB | Botão e campos */
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+
+.modal-footer>span{
+    display: flex; 
+    gap: 8px;
+}
+
+.buttonDefinir{
+    display: flex;
+    height: 32px;
+    padding: 0px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    border-radius: 100px;
+    background: var(--Verde-Aprova, #4BB939);
+    border: none;
+
+}
+
+.buttonCancelar{
+    display: flex;
+    height: 32px;
+    padding: 0px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    border-radius: 100px;
+    background: var(--Vermelho-Reprova, #E63D3D);
+    border: none;
+}
