@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Campos de Input</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+  <h2>Campos de Input</h2>
+  <form id="formInputs">
+    <div class="form-group">
+      <label for="headersInput">Cabeçalhos</label>
+      <textarea class="form-control" id="headersInput" rows="3" placeholder="Cole os cabeçalhos aqui..."></textarea>
+    </div>
+    <div class="form-group">
+      <label for="dataInput">Dados</label>
+      <textarea class="form-control" id="dataInput" rows="5" placeholder="Cole os dados aqui..."></textarea>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="generateInputs()">Gerar Inputs</button>
+  </form>
+
+  <div id="generatedInputs" class="mt-4"></div>
+</div>
+
+<script>
+  function generateInputs() {
+    const headersText = document.getElementById('headersInput').value;
+    const dataText = document.getElementById('dataInput').value;
+
+    const headers = headersText.trim().split(/\s+/);
+    const dataRows = dataText.trim().split(/\n/);
+
+    const generatedInputs = document.getElementById('generatedInputs');
+    generatedInputs.innerHTML = '';
+
+    dataRows.forEach((rowData) => {
+      const divRow = document.createElement('div');
+      divRow.classList.add('mb-3');
+
+      const cells = rowData.trim().split(/\s+/);
+
+      headers.forEach((header, index) => {
+        const label = document.createElement('label');
+        label.textContent = header;
+        label.classList.add('d-block', 'mb-1', 'font-weight-bold');
+
+        const input = document.createElement('input');
+        input.setAttribute('type', 'text');
+        input.classList.add('form-control');
+        input.setAttribute('disabled', 'true');
+        input.value = cells[index] || '';
+
+        divRow.appendChild(label);
+        divRow.appendChild(input);
+      });
+
+      generatedInputs.appendChild(divRow);
+    });
+  }
+</script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
