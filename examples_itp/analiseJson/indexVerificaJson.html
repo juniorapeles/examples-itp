@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário JSON</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .form-group {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <form id="jsonForm">
+      <div class="form-group">
+        <label for="jsonInput">Insira o JSON:</label>
+        <textarea class="form-control" id="jsonInput" rows="5"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Gerar Campos</button>
+    </form>
+    <hr>
+    <form id="generatedForm"></form>
+  </div>
+
+  <script>
+    const form = document.getElementById('jsonForm');
+    const generatedForm = document.getElementById('generatedForm');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const jsonInput = document.getElementById('jsonInput').value.trim();
+
+      if (!jsonInput) {
+        alert('Por favor, insira um JSON válido.');
+        return;
+      }
+
+      let jsonObject;
+      try {
+        jsonObject = JSON.parse(jsonInput);
+      } catch (error) {
+        alert('Erro ao analisar o JSON. Certifique-se de que é um JSON válido.');
+        return;
+      }
+
+      generateFormFields(jsonObject);
+    });
+
+    function generateFormFields(json) {
+      generatedForm.innerHTML = ''; // Limpar formulário anterior (se houver)
+
+      Object.keys(json).forEach(key => {
+        const label = document.createElement('label');
+        label.textContent = key;
+
+        const input = document.createElement('input');
+        input.setAttribute('type', 'text');
+        input.setAttribute('class', 'form-control');
+        input.setAttribute('name', key);
+        input.value = json[key] !== null ? json[key] : ''; // Lidar com valores nulos
+        input.setAttribute('disabled', true); // Definir campo como desabilitado
+
+        const divFormGroup = document.createElement('div');
+        divFormGroup.setAttribute('class', 'form-group');
+        divFormGroup.appendChild(label);
+        divFormGroup.appendChild(input);
+
+        generatedForm.appendChild(divFormGroup);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mazars</title>
+    <style>
+          .bola-header {
+            display: flex;
+            justify-content: center;
+            height: 20rem;
+            background-color: #3498db;
+            padding: 50px;
+            text-align: center;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+        }
+        .quaseForm{
+            width: 80%;
+            height: 75%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.54);
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 7px;
+
+        }
+        .quaseForm span{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        <div class="bola-header">
+           <div class="quaseForm">
+                <div>
+                    <span>
+                        <h4>Empresa </h4>
+                        <h5  translate="no">
+                            #buscaDadosMazarsSolic.RAZAO_SOCIAL#
+                        </h5>
+                    </span>
+                    <span>
+                        <h4>Consultor </h4>
+                        <h5  translate="no">
+                            #buscaDadosMazarsSolic.NOME_USER#
+                        </h5>
+                        
+                    </span>
+                </div>
+
+                <div>
+                    <span>
+                        <h4>Área </h4>
+                        <h5  translate="no">
+                            #buscaDadosMazarsSolic.area#
+                    </span>
+                    <span>
+                        <p>data de entrega</p>
+                        <p>26/04/2005</p>
+                    </span>
+                </div>
+
+                <div>
+                    <span>
+                        <h4 >Sub-Área</h4>
+                        <h5  translate="no">
+                            <cfif len(#buscaDadosMazarsSolic.SUB_AREA#) gt 300>
+                            <cfset limitString = left(#buscaDadosMazarsSolic.SUB_AREA#,300)>
+                            <cfoutput>#limitString#...</cfoutput>
+                            <cfelse>
+                            <cfoutput>#buscaDadosMazarsSolic.SUB_AREA#</cfoutput>
+                            </cfif>
+                        </h5>
+                    </span>
+                    <span>
+                        <h4>Status</h4>
+                        <h5 translate="no">
+                            <cfif session.MM_NU_PERFIL_USUARIO eq 23> 
+                                <cfif STATUS_DOCUMENTO_SOLIC EQ '1' AND STATUS_SOLICITACAO EQ '1'>
+                                Solicitação Concluída
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '1' AND STATUS_SOLICITACAO EQ '2'>
+                                Solicitação Cancelada	
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '1'>
+                                Aguardando Documentação	
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '2' AND STATUS_SOLICITACAO EQ '1'>
+                                Solicitação Concluída
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '2' AND STATUS_SOLICITACAO EQ '2'>
+                                Solicitação Cancelada
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '2'>
+                                Sob Avaliação
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '3' AND STATUS_SOLICITACAO EQ '1'>
+                                Solicitação Concluída
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '3' AND STATUS_SOLICITACAO EQ '2'>
+                                Solicitação Cancelada
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '3'>
+                                Aguardando Documentação
+                                <cfelseif STATUS_RS NEQ '0' and STATUS_RS neq '' AND STATUS_SOLICITACAO EQ '1'>
+                                Solicitação Concluída
+                                <cfelseif STATUS_RS NEQ '0' and STATUS_RS neq '' AND STATUS_SOLICITACAO EQ '2'>
+                                Solicitação Cancelada
+                                <cfelse>
+                                Solicitação Inexistente
+                                </cfif>
+                            <cfelse>
+                                <cfif STATUS_DOCUMENTO_SOLIC EQ '1' AND STATUS_SOLICITACAO EQ '1'>
+                                Solicitação Concluída
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '1' AND STATUS_SOLICITACAO EQ '2'>
+                                Solicitação Cancelada	
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '1'>	
+                                Solicitado	
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '2' AND STATUS_SOLICITACAO EQ '1'>
+                                Solicitação Concluída
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '2' AND STATUS_SOLICITACAO EQ '2'>
+                                Solicitação Cancelada
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '2'>
+                                Recebido
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '3' AND STATUS_SOLICITACAO EQ '1'>
+                                Solicitação Concluída
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '3' AND STATUS_SOLICITACAO EQ '2'>
+                                Solicitação Cancelada
+                                <cfelseif STATUS_DOCUMENTO_SOLIC EQ '3'>
+                                Solicitado Novamente
+                                <cfelseif STATUS_RS NEQ '0' and STATUS_RS neq '' AND STATUS_SOLICITACAO EQ '1'>
+                                Solicitação Concluída
+                                <cfelseif STATUS_RS NEQ '0' and STATUS_RS neq '' AND STATUS_SOLICITACAO EQ '2'>
+                                Solicitação Cancelada
+                                <cfelse>
+                                Solicitação Inexistente
+                                </cfif>
+                            </cfif>
+                        </h5>
+                       
+                    </span>
+                    <span>
+                        <h4>Data Prevista Entrega</h4>
+                        <h5 translate="no">
+                            #lsdateformat(buscaDadosMazarsSolic.dataPrevistaDados,'dd/mm/yyyy')#
+                        </h5>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
