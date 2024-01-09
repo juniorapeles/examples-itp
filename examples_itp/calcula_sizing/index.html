@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Pontos de Função</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .history {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <h2>Calculadora de Pontos de Função</h2>
+    <div class="form-group">
+      <label for="sizeInput">Tamanho:</label>
+      <input type="number" class="form-control" id="sizeInput">
+    </div>
+    <div class="form-group">
+      <label for="result">Soma:</label>
+      <input type="text" class="form-control" id="result" disabled>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" id="calculateButton">Calcular Soma</button>
+      <button class="btn btn-success" id="convertButton">Converter para Dias de Trabalho (8 horas)</button>
+    </div>
+    <div class="history">
+      <h4>Histórico de Somas</h4>
+      <ul id="sumHistory" class="list-group">
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('calculateButton').addEventListener('click', function() {
+      const sizeInput = document.getElementById('sizeInput');
+      const resultInput = document.getElementById('result');
+      const sumHistory = document.getElementById('sumHistory');
+
+      const size = parseFloat(sizeInput.value);
+      if (!isNaN(size)) {
+        const currentResult = parseFloat(resultInput.value) || 0;
+        const total = size + currentResult;
+
+        resultInput.value = total;
+
+        const li = document.createElement('li');
+        li.className = 'list-group-item';
+        li.appendChild(document.createTextNode(`Soma atual: ${total}`));
+        sumHistory.appendChild(li);
+
+        sizeInput.value = ''; // Limpa o campo de entrada após calcular
+      }
+    });
+
+    document.getElementById('convertButton').addEventListener('click', function() {
+      const resultInput = document.getElementById('result');
+      const sumHistory = document.getElementById('sumHistory');
+
+      const totalHours = parseFloat(resultInput.value);
+      if (!isNaN(totalHours)) {
+        const daysOfWork = totalHours / 8;
+        const li = document.createElement('li');
+        li.className = 'list-group-item font-weight-bold';
+        li.appendChild(document.createTextNode(`Total de horas convertidas para dias de trabalho (8 horas): ${daysOfWork.toFixed(2)} dias`));
+        sumHistory.appendChild(li);
+      }
+    });
+  </script>
+</body>
+</html>
